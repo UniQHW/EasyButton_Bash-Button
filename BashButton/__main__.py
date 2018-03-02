@@ -23,6 +23,8 @@ from pathlib import Path
 class Event:
     def __init__(self, event_section):
 
+        self.show_output = False
+
         try:
             self.sig = event_section['sig'];
 
