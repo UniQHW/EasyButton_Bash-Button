@@ -7,7 +7,7 @@ Bootstrap bash scripts to your EasyButton!
 
 Bash button is a simple python server that can execute bash commands and bash scripts on the push of my modified/hacked Staples Easy Button. Which scripts to be executed on which event is configured trough a simple configuration file.
 
-![gif]()
+![Gif](https://media.giphy.com/media/3FoCNcBsXLGJ0WE3Kb/giphy.gif)
 
 ## Contents
 - [Preparation](#preparation)
