@@ -26,11 +26,9 @@ Bash button is a simple python server that can execute bash commands and bash sc
 
 ## Preparation
 
-Bash button is part of my [Easy Button Project](https://github.com/UniQHW/EasyButton_Docs), and as a result, relies on **my** modifications applied to the button.
+Bash button is part of my [Easy Button Project](https://github.com/UniQHW/EasyButton_Docs), and as a result, relies on **my** modifications applied to the button. To replicate my modifications to your very own easy button, refer to the [hack guide]()
 
-To replicate my modifications to your very own easy button, refer to the [hack guide]()
-
-Grab a local copy of this project by cloning the repository:
+Begin by grabbing a local copy of this project:
 ```bash
 git clone https://github.com/UniQHW/EasyButton_Bash-Button
 ```
@@ -42,30 +40,40 @@ While not required, this project provides a implementation of my [Easy Button Ha
 |---------|--------|
 |onPush()|0|
 |onQuickPush()|1|
+Signals are transmitted as characters.
 
 More information about my Easy Button Handler interface can be found [here](https://github.com/UniQHW/EasyButton_Handler)
 
 ### Installation
 
-To be done...
+
+To flash the Arduino with the bash button handler, import the [arduino directory](https://github.com/UniQHW/EasyButton_BashButton/arduino) as a project into a Arduino IDE.
+
+For the online IDE, it is required to provide the project as a zip. To do so, simply compress the directory as a zip and import it into the IDE.
+
+In order for the handler to build successfully, my easy button handler interface library is required . To import the handler interface, [simply follow this guide](https://github.com/UniQHW/EasyButton_EasyButtonHandler/README.md#installation)
 
 ## Bash Button
 
-The bash button server code is located under the [`/BashButton`](https://github.com/UniQHW/EasyButton_Bash-Button/BashButton) directory.
+The bash button server evaluates the serial console (typically located at `/dev/ttyACM0` on Linux machines) for any incoming signals. **Should a signal match an event specified in the [bash button configuration file](configuration-file), so will the assigned bash command or script be executed.**
+
+Server and client communication code:
+
+|TX|RX|
+|--|--|
+|[`BashButtonHandler.h:41-42`](https://github.com/UniQHW/EasyButton_Bash-Button/blob/master/arduino/BashButtonHandler.h#L41-L42)|[`__main__.py:112`](https://github.com/UniQHW/EasyButton_Bash-Button/blob/master/BashButton/__main__.py#L112) and [`__main__.py:61`](https://github.com/UniQHW/EasyButton_Bash-Button/blob/master/BashButton/__main__.py#L61)|
 
 ### Dependencies
-The following Dependencies are required in order to execute the bash button server:
+The following dependencies must be downloaded manually in order to install and execute the bash button server:
 
 - [Python]() >= 3.4
-- [pySerial]()
 
-**On Ubuntu 17.10 systems**, these Dependencies can be installed with the following commands:
+**On Ubuntu 17.10 systems**, these dependencies can be installed with the following commands:
 ```bash
-$ sudo apt install python3
-$ sudo pip3 install serial
+$ sudo apt install python3 python3-pip
 ```
 
-For other distributions, refer to your distribution specific package manager(s).
+For other distributions, please refer to your distribution specific package manager(s).
 
 ### Installation
 To install bash button, execute the [setup.py](https://github.com/UniQHW/EasyButton_Bash-Button/setup.py) script with the `install` argument provided
