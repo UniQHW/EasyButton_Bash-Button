@@ -1,5 +1,5 @@
 # Bash Button
-> This project is part of my [Easy Button Project](https://github.com/UniQHW/EasyButton_Docs)
+> This project is part of my [Easy Button Project](https://github.com/UniQHW/EasyButton)
 
 Bootstrap bash scripts to your EasyButton!
 
@@ -26,7 +26,7 @@ Bash button is a simple python server that can execute bash commands and bash sc
 
 ## Preparation
 
-Bash button is part of my [Easy Button Project](https://github.com/UniQHW/EasyButton_Docs), and as a result, relies on **my** modifications applied to the button. To replicate my modifications to your very own easy button, refer to the [hack guide]()
+Bash button is part of my [Easy Button Project](https://github.com/UniQHW/EasyButton), and as a result, relies on **my** modifications applied to the button. To replicate my modifications to your very own easy button, refer to the [hack guide]()
 
 Begin by grabbing a local copy of this project:
 ```bash
