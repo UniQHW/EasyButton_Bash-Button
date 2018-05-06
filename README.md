@@ -47,7 +47,7 @@ More information about my Easy Button Handler interface can be found [here](http
 ### Installation
 
 
-To flash the Arduino with the bash button handler, import the [arduino directory](https://github.com/UniQHW/EasyButton_BashButton/arduino) as a project into a Arduino IDE.
+To flash the Arduino with the bash button handler, import the [arduino directory](https://github.com/UniQHW/EasyButton_Bash-Button/tree/master/arduino) as a project into a Arduino IDE.
 
 For the online IDE, it is required to provide the project as a zip. To do so, simply compress the directory as a zip and import it into the IDE.
 
