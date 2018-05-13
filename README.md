@@ -26,7 +26,7 @@ Bash button is a simple python server that can execute bash commands and bash sc
 
 ## Preparation
 
-Bash button is part of my [Easy Button Project](https://github.com/UniQHW/EasyButton), and as a result, relies on **my** modifications applied to the button. To replicate my modifications to your very own easy button, refer to [this overview](https://github.com/UniQHW/EasyButton#hacking)
+Bash button is part of my [Easy Button Project](https://github.com/UniQHW/EasyButton), and as a result, relies on my modifications applied to the button. To replicate my modifications to your very own easy button, refer to [this overview](https://github.com/UniQHW/EasyButton#hacking)
 
 Begin by grabbing a local copy of this project:
 ```bash
@@ -47,9 +47,7 @@ More information about my Easy Button Handler interface can be found [here](http
 ### Installation
 
 
-To flash the Arduino with the bash button handler, import the [arduino directory](https://github.com/UniQHW/EasyButton_Bash-Button/tree/master/arduino) as a project into a Arduino IDE.
-
-For the online IDE, it is required to provide the project as a zip. To do so, simply compress the directory as a zip and import it into the IDE.
+To flash the Arduino with the bash button handler, import the [arduino/Main.ino](https://github.com/UniQHW/EasyButton_Bash-Button/tree/master/arduino) file into a Arduino IDE.
 
 In order for the handler to build successfully, my easy button handler interface library is required . To import the handler interface, [simply follow this guide](https://github.com/UniQHW/EasyButton_EasyButtonHandler/README.md#installation)
 

@@ -14,12 +14,31 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
  * Author       : Patrick Pedersen <ctx.xda@gmail.com>
- * Documentation:
 
  */
 
 #include "EasyButton.h"
-#include "BashButtonHandler.h"
+
+/* Signal Header */
+#define SIG_PUSH 0
+#define SIG_QUICK_PUSH 1
+
+#include <Arduino.h>
+#include <IEasyButtonHandler.h>
+
+/* BashButtonHandler
+ * ----------
+ * Description: A simple implementation of the EasyButtonHandler interface (https://github.com/UniQHW/EasyButton_Handler)
+ * ---------- */
+class BashButtonHandler: public IEasyButtonHandler {
+
+public:
+  BashButtonHandler(EasyButton *eb): IEasyButtonHandler(eb) {}
+
+private:
+  void onPush() { Serial.println(SIG_PUSH); }
+  void onQuickPushed() { Serial.println(SIG_QUICK_PUSH); }
+};
 
 /* EasyButton Data Pin */
 const uint8_t EB_DATA = 3;
