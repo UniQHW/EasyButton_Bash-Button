@@ -26,52 +26,44 @@ Bash button is a simple python server that can execute bash commands and bash sc
 
 ## Preparation
 
-Bash button is part of my [Easy Button Project](https://github.com/UniQHW/EasyButton), and as a result, relies on my modifications applied to the button. To replicate my modifications to your very own easy button, refer to [this overview](https://github.com/UniQHW/EasyButton#hacking)
+Bash button is part of my [Easy Button Project](https://github.com/UniQHW/EasyButton), and as a result, relies on my modifications applied to the button. To replicate those modifications to your very own easy button, refer to [this overview](https://github.com/UniQHW/EasyButton#hacking)
 
-Begin by grabbing a local copy of this project:
+After the required modifications have been applied, proceed by grabbing a local copy of this project:
 ```bash
 git clone https://github.com/UniQHW/EasyButton_Bash-Button
 ```
 
 ## Arduino
-While not required, this project provides a implementation of my [Easy Button Handler Interface](https://github.com/UniQHW/EasyButton_Handler). The handler provides the serial bus with a total of two signals:
+The Arduino uses a simple implementation of my [Easy Button Handler Interface](https://github.com/UniQHW/EasyButton_Handler). The handler serves the serial bus with a total of two events:
 
 |Action|Signal|
 |---------|--------|
 |onPush()|0|
 |onQuickPush()|1|
-Signals are transmitted as characters.
 
-More information about my Easy Button Handler interface can be found [here](https://github.com/UniQHW/EasyButton_Handler)
+To implement additional events, please see [this table](https://github.com/UniQHW/EasyButton_Handler#events)  
 
 ### Installation
 
+To flash the Arduino with the bash button handler, import the [handler interface library]((https://github.com/UniQHW/EasyButton_EasyButtonHandler/README.md#installation)) and the [arduino/Main.ino](https://github.com/UniQHW/EasyButton_Bash-Button/tree/master/arduino) file into a Arduino IDE.
 
-To flash the Arduino with the bash button handler, import the [arduino/Main.ino](https://github.com/UniQHW/EasyButton_Bash-Button/tree/master/arduino) file into a Arduino IDE.
-
-In order for the handler to build successfully, my easy button handler interface library is required . To import the handler interface, [simply follow this guide](https://github.com/UniQHW/EasyButton_EasyButtonHandler/README.md#installation)
+Ensure that your Arduino is properly connected and can be accessed. Finally, click the flash button (the arrow button) to flash the handler onto the Arduino.
 
 ## Bash Button
 
-The bash button server evaluates the serial console (typically located at `/dev/ttyACM0` on Linux machines) for any incoming signals. **Should a signal match an event specified in the [bash button configuration file](configuration-file), so will the assigned bash command or script be executed.**
-
-Server and client communication code:
-
-|TX|RX|
-|--|--|
-|[`BashButtonHandler.h:41-42`](https://github.com/UniQHW/EasyButton_Bash-Button/blob/master/arduino/BashButtonHandler.h#L41-L42)|[`__main__.py:112`](https://github.com/UniQHW/EasyButton_Bash-Button/blob/master/BashButton/__main__.py#L112) and [`__main__.py:61`](https://github.com/UniQHW/EasyButton_Bash-Button/blob/master/BashButton/__main__.py#L61)|
+The bash button server evaluates the serial console (typically located at `/dev/ttyACM0` on Linux machines) for any incoming signals. If a signal matches an event specified in the configuration file, the assigned bash command or script will be executed.
 
 ### Dependencies
-The following dependencies must be downloaded manually in order to install and execute the bash button server:
+The following dependencies are required for the server to work:
 
 - [Python]() >= 3.4
 
 **On Ubuntu 17.10 systems**, these dependencies can be installed with the following commands:
 ```bash
-$ sudo apt install python3 python3-pip
+$ sudo apt install python3
 ```
 
-For other distributions, please refer to your distribution specific package manager(s).
+For other distributions, please refer to your distribution specific package manager.
 
 ### Installation
 To install bash button, execute the [setup.py](https://github.com/UniQHW/EasyButton_Bash-Button/setup.py) script with the `install` argument provided
@@ -110,7 +102,7 @@ wget https://raw.githubusercontent.com/UniQHW/EasyButton_Bash-Button/bash-button
 
 #### `[device]`
 
-The device section stores necessary data in order to establish communication with the micro controller (Arduino).
+The device section stores necessary data in order to establish communication with the Arduino.
 
 ##### Properties
 |Property|Constraint|Description|
@@ -119,15 +111,15 @@ The device section stores necessary data in order to establish communication wit
 
 #### `[event_*]`
 
-Event sections are indicated by starting with the `event_` prefix. They define which bash command or script is to be executed upon the revival of a specified signal.
+Event sections must begin with the `event_` prefix and may be named as desired. They define which bash command or script is to be executed upon the retrieval of a specified signal.
 
 ##### Properties
 |Property|Constraint|Description|
 |--------|----------|-----------|
-|sig     |Required  |String of the signal to be received from the serial console|
+|sig     |Required  |Awaited signal (See [here](#Arduino))|
 |cmd     |Required unless the `script` property has been set |Bash command to be executed|
 |script  |Required unless the `cmd` property has been set|Bash script to be executed|
-|Print|Optional|Defines whether the output of the command should be displayed|
+|Print|Optional|Defines whether the output of the command should be displayed in the terminal|
 
 ### Usage
 ```
@@ -158,9 +150,9 @@ In the case of interest in modifying this software, the following information ma
 
 ### Directories
 
-- [`/BashButton`](https://github.com/UniQHW/EasyButton_Bash-Button/BashButton) - Stores code for the bash button server. This includes **argument parsing**, **configuration file handling** and **serial communication**.
+- [`/BashButton`](https://github.com/UniQHW/EasyButton_Bash-Button/BashButton) - Stores code for the bash button server.
 
-- [`/arduino`](https://github.com/UniQHW/EasyButton_Bash-Button/BashButton) - Provides the default code running on the Arduino. For changes to this package, I highly recommend looking at the [handler interface](https://github.com/UniQHW/EasyButton_Handler) that has been implemented for this project.
+- [`/arduino`](https://github.com/UniQHW/EasyButton_Bash-Button/BashButton) - Provides the default code running on the Arduino. For changes to this package, I highly recommend looking at the [handler interface](https://github.com/UniQHW/EasyButton_Handler) that has been implemented in this project.
 
 ## License
 
